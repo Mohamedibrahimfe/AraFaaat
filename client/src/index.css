@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Islamic Modern Harmony - Primary Colors */
+  --primary: oklch(0.42 0.18 142); /* Deep Islamic Green #1a5d3a */
+  --primary-foreground: oklch(0.98 0.001 286.375); /* Soft Cream */
+  --sidebar-primary: oklch(0.42 0.18 142);
+  --sidebar-primary-foreground: oklch(0.98 0.001 286.375);
+  
+  /* Accent Colors */
+  --accent: oklch(0.65 0.18 70); /* Warm Gold #d4a574 */
+  --accent-foreground: oklch(0.235 0.015 65); /* Dark text */
+  
+  /* Secondary Colors */
+  --secondary: oklch(0.58 0.12 245); /* Soft Blue #4a90a4 */
+  --secondary-foreground: oklch(0.98 0.001 286.375);
+  
+  /* Neutral Colors */
+  --background: oklch(0.98 0.001 286.375); /* Soft Cream */
+  --foreground: oklch(0.235 0.015 65); /* Dark text */
+  --card: oklch(0.99 0 0); /* Pure white */
+  --card-foreground: oklch(0.235 0.015 65);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.235 0.015 65);
+  
+  /* Muted Colors */
+  --muted: oklch(0.92 0.004 286.32); /* Light gray */
+  --muted-foreground: oklch(0.552 0.016 285.938); /* Medium gray */
+  
+  /* Destructive */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  
+  /* Borders & Inputs */
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.42 0.18 142); /* Green ring */
+  
+  /* Sidebar */
+  --sidebar: oklch(0.98 0.001 286.375);
+  --sidebar-foreground: oklch(0.235 0.015 65);
+  --sidebar-accent: oklch(0.65 0.18 70);
+  --sidebar-accent-foreground: oklch(0.235 0.015 65);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.42 0.18 142);
+  
+  /* Charts */
+  --chart-1: oklch(0.42 0.18 142); /* Green */
+  --chart-2: oklch(0.65 0.18 70); /* Gold */
+  --chart-3: oklch(0.58 0.12 245); /* Blue */
+  --chart-4: oklch(0.5 0.15 150); /* Medium green */
+  --chart-5: oklch(0.35 0.15 145); /* Dark green */
+  
+  /* Spacing & Radius */
+  --radius: 0.75rem;
+}
+
+.dark {
+  /* Dark mode disabled for this design - light theme only */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  html {
+    direction: rtl;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
+
+
+@layer components {
+  /* Islamic Modern Harmony - Custom Components */
+  
+  .arafah-heading {
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: oklch(0.42 0.18 142);
+  }
+  
+  .arafah-subheading {
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 500;
+    color: oklch(0.235 0.015 65);
+  }
+  
+  .arafah-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100;
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .arafah-card:hover {
+    @apply shadow-md border-accent/30;
+    transform: translateY(-2px);
+  }
+  
+  .arafah-counter-btn {
+    @apply bg-primary text-primary-foreground rounded-lg font-bold transition-all duration-150;
+    transform-origin: center;
+  }
+  
+  .arafah-counter-btn:active {
+    transform: scale(0.97);
+  }
+  
+  .arafah-counter-btn:hover {
+    @apply bg-primary/90;
+  }
+  
+  .arafah-divider {
+    @apply my-8 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent;
+  }
+  
+  .arafah-gold-accent {
+    color: oklch(0.65 0.18 70);
+  }
+  
+  .arafah-pulse {
+    animation: arafah-pulse 400ms ease-out;
+  }
+  
+  @keyframes arafah-pulse {
+    0% {
+      box-shadow: 0 0 0 0 oklch(0.65 0.18 70 / 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px oklch(0.65 0.18 70 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 oklch(0.65 0.18 70 / 0);
+    }
+  }
+  
+  .arafah-fade-in {
+    animation: arafah-fade-in 400ms ease-out;
+  }
+  
+  @keyframes arafah-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .arafah-stagger-1 {
+    animation: arafah-fade-in 400ms ease-out 80ms backwards;
+  }
+  
+  .arafah-stagger-2 {
+    animation: arafah-fade-in 400ms ease-out 160ms backwards;
+  }
+  
+  .arafah-stagger-3 {
+    animation: arafah-fade-in 400ms ease-out 240ms backwards;
+  }
+  
+  .arafah-stagger-4 {
+    animation: arafah-fade-in 400ms ease-out 320ms backwards;
+  }
+  
+  .arafah-stagger-5 {
+    animation: arafah-fade-in 400ms ease-out 400ms backwards;
+  }
+}
