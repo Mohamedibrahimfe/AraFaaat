@@ -6,7 +6,6 @@ import {
   HeartHandshake, Sparkles, ShieldCheck, RefreshCcw, BookHeart,
   Moon, Quote, ScrollText
 } from 'lucide-react';
-import { Analytics } from "@vercel/analytics/next"
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -54,7 +53,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-geometric pattern-geometric">
-      <Analytics />
+      
       {/* ============ HERO ============ */}
       <section ref={heroRef} className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="absolute inset-0 overflow-hidden">
