@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Plus, RotateCcw } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { useDhikrCounter } from '@/hooks/useDhikrCounter';
 
 interface DhikrCounterProps {
@@ -7,8 +8,7 @@ interface DhikrCounterProps {
   description: string;
   target?: number;
   icon?: React.ReactNode;
-  delay?: number;
-  counterKey: string; // Unique key for Local Storage
+  counterKey: string;
 }
 
 export default function DhikrCounter({
@@ -16,111 +16,159 @@ export default function DhikrCounter({
   description,
   target = 1000,
   icon,
-  delay = 0,
   counterKey,
 }: DhikrCounterProps) {
   const { count, increment, reset, isLoaded } = useDhikrCounter(counterKey);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [justCompleted, setJustCompleted] = useState(false);
+
+  const progress = Math.min(count / target, 1);
+  const circumference = 2 * Math.PI * 54;
+  const offset = circumference * (1 - progress);
+  const isComplete = count >= target;
 
   const handleIncrement = () => {
+    const wasComplete = isComplete;
     increment();
     setIsAnimating(true);
+    if (!wasComplete && count + 1 >= target) {
+      setJustCompleted(true);
+      setTimeout(() => setJustCompleted(false), 2000);
+    }
     setTimeout(() => setIsAnimating(false), 150);
   };
 
   const handleReset = () => {
     if (window.confirm('هل تريد إعادة تعيين هذا العداد؟')) {
       reset();
+      setJustCompleted(false);
     }
   };
 
-  const progress = (count / target) * 100;
-
-  // Show skeleton while loading from Local Storage
   if (!isLoaded) {
     return (
-      <div className="arafah-card p-6 flex flex-col gap-4 animate-pulse">
-        <div className="h-6 bg-gray-200 rounded w-1/2" />
-        <div className="h-4 bg-gray-200 rounded w-full" />
-        <div className="h-16 bg-gray-200 rounded" />
+      <div className="arafah-card p-6 animate-pulse">
+        <div className="h-5 bg-muted rounded w-1/2 mb-3" />
+        <div className="h-3 bg-muted rounded w-full mb-6" />
+        <div className="flex justify-center mb-6">
+          <div className="w-32 h-32 rounded-full bg-muted" />
+        </div>
+        <div className="h-10 bg-muted rounded" />
       </div>
     );
   }
 
   return (
-    <div
-      className={`arafah-card p-6 flex flex-col gap-4 arafah-stagger-${Math.min(Math.ceil(delay / 80) + 1, 5)}`}
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      {/* Header */}
+    <div className="arafah-card p-6 flex flex-col gap-5">
       <div className="flex items-start gap-3">
-        {icon && <div className="text-2xl mt-1">{icon}</div>}
-        <div className="flex-1">
-          <h3 className="arafah-heading text-lg">{title}</h3>
-          <p className="text-sm text-muted-foreground mt-1">{description}</p>
+        {icon && <span className="text-2xl mt-0.5">{icon}</span>}
+        <div className="flex-1 min-w-0">
+          <h3 className="arafah-heading text-lg truncate">{title}</h3>
+          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+            {description}
+          </p>
         </div>
       </div>
 
-      {/* Progress Bar */}
-      <div className="w-full">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-xs text-muted-foreground">التقدم</span>
-          <span className="text-xs font-semibold text-primary">
-            {count} / {target}
-          </span>
+      <div className="flex flex-col items-center gap-2">
+        <div className="relative w-32 h-32">
+          <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+            <circle
+              cx="60" cy="60" r="54"
+              fill="none"
+              stroke="oklch(0.9 0.005 90)"
+              strokeWidth="6"
+            />
+            <motion.circle
+              cx="60" cy="60" r="54"
+              fill="none"
+              stroke="url(#progressGradient)"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              initial={false}
+              animate={{ strokeDashoffset: offset }}
+              transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            />
+            <defs>
+              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="oklch(0.42 0.15 145)" />
+                <stop offset="100%" stopColor="oklch(0.67 0.16 75)" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <motion.span
+              className="text-3xl font-bold"
+              style={{ color: 'var(--accent)' }}
+              animate={isAnimating ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              {count.toLocaleString('ar-SA')}
+            </motion.span>
+            <span className="text-[10px] text-muted-foreground mt-0.5">
+              من {target.toLocaleString('ar-SA')}
+            </span>
+          </div>
         </div>
-        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-300"
-            style={{ width: `${Math.min(progress, 100)}%` }}
+
+        <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            style={{
+              background: 'linear-gradient(90deg, var(--primary), var(--accent))',
+            }}
+            initial={false}
+            animate={{ width: `${progress * 100}%` }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
           />
         </div>
       </div>
 
-      {/* Counter Display */}
-      <div className="text-center py-4">
-        <div
-          className={`text-5xl font-bold arafah-gold-accent transition-all duration-150 ${
-            isAnimating ? 'scale-110' : 'scale-100'
-          }`}
-        >
-          {count.toLocaleString('ar-SA')}
-        </div>
-      </div>
-
-      {/* Buttons */}
       <div className="flex gap-2">
-        <button
+        <motion.button
           onClick={handleIncrement}
-          className="arafah-counter-btn flex-1 py-3 flex items-center justify-center gap-2"
+          className="arafah-counter-btn flex-1 py-2.5 flex items-center justify-center gap-2 text-sm"
+          whileTap={{ scale: 0.96 }}
         >
-          <Plus size={18} />
+          <Plus size={16} />
           إضافة
-        </button>
+        </motion.button>
         <button
           onClick={handleReset}
-          className="px-4 py-3 rounded-lg border border-gray-300 text-foreground hover:bg-gray-50 transition-colors duration-150 flex items-center justify-center"
+          className="px-3 py-2.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors duration-150 flex items-center justify-center"
           title="إعادة تعيين العداد"
         >
-          <RotateCcw size={18} />
+          <RotateCcw size={16} />
         </button>
       </div>
 
-      {/* Completion Message */}
-      {count >= target && (
-        <div className="text-center py-2 bg-green-50 rounded-lg border border-green-200 arafah-pulse">
-          <p className="text-sm font-semibold text-green-700">
-            ✓ تم إكمال العدد المستهدف
-          </p>
-        </div>
-      )}
+      <AnimatePresence>
+        {isComplete && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
+          >
+            <div className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium ${
+              justCompleted ? 'arafah-pulse' : ''
+            }`}
+            style={{
+              backgroundColor: 'oklch(0.42 0.15 145 / 0.1)',
+              color: 'var(--primary)',
+              border: '1px solid oklch(0.42 0.15 145 / 0.2)',
+            }}>
+              <CheckCircle2 size={16} />
+              تم إكمال العدد المستهدف
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Save Indicator */}
-      <div className="text-center">
-        <p className="text-xs text-muted-foreground">
-          💾 يتم حفظ التقدم تلقائياً
-        </p>
-      </div>
+      <p className="text-[10px] text-muted-foreground/60 text-center">
+        يُحفظ التقدم تلقائياً
+      </p>
     </div>
   );
 }

@@ -43,79 +43,107 @@
 }
 
 :root {
-  /* Islamic Modern Harmony - Primary Colors */
-  --primary: oklch(0.42 0.18 142); /* Deep Islamic Green #1a5d3a */
-  --primary-foreground: oklch(0.98 0.001 286.375); /* Soft Cream */
-  --sidebar-primary: oklch(0.42 0.18 142);
-  --sidebar-primary-foreground: oklch(0.98 0.001 286.375);
-  
-  /* Accent Colors */
-  --accent: oklch(0.65 0.18 70); /* Warm Gold #d4a574 */
-  --accent-foreground: oklch(0.235 0.015 65); /* Dark text */
-  
-  /* Secondary Colors */
-  --secondary: oklch(0.58 0.12 245); /* Soft Blue #4a90a4 */
-  --secondary-foreground: oklch(0.98 0.001 286.375);
-  
-  /* Neutral Colors */
-  --background: oklch(0.98 0.001 286.375); /* Soft Cream */
-  --foreground: oklch(0.235 0.015 65); /* Dark text */
-  --card: oklch(0.99 0 0); /* Pure white */
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(0.99 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  
-  /* Muted Colors */
-  --muted: oklch(0.92 0.004 286.32); /* Light gray */
-  --muted-foreground: oklch(0.552 0.016 285.938); /* Medium gray */
-  
-  /* Destructive */
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  
-  /* Borders & Inputs */
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.42 0.18 142); /* Green ring */
-  
-  /* Sidebar */
-  --sidebar: oklch(0.98 0.001 286.375);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.65 0.18 70);
-  --sidebar-accent-foreground: oklch(0.235 0.015 65);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.42 0.18 142);
-  
-  /* Charts */
-  --chart-1: oklch(0.42 0.18 142); /* Green */
-  --chart-2: oklch(0.65 0.18 70); /* Gold */
-  --chart-3: oklch(0.58 0.12 245); /* Blue */
-  --chart-4: oklch(0.5 0.15 150); /* Medium green */
-  --chart-5: oklch(0.35 0.15 145); /* Dark green */
-  
-  /* Spacing & Radius */
-  --radius: 0.75rem;
+  --radius: 0.875rem;
+
+  --primary: oklch(0.42 0.15 145);
+  --primary-foreground: oklch(0.97 0.003 95);
+
+  --accent: oklch(0.67 0.16 75);
+  --accent-foreground: oklch(0.22 0.01 70);
+
+  --secondary: oklch(0.55 0.1 235);
+  --secondary-foreground: oklch(0.97 0.003 95);
+
+  --background: oklch(0.975 0.004 95);
+  --foreground: oklch(0.22 0.01 70);
+
+  --card: oklch(0.99 0.002 90);
+  --card-foreground: oklch(0.22 0.01 70);
+  --popover: oklch(0.99 0.002 90);
+  --popover-foreground: oklch(0.22 0.01 70);
+
+  --muted: oklch(0.94 0.005 90);
+  --muted-foreground: oklch(0.55 0.01 90);
+
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.97 0.003 95);
+
+  --border: oklch(0.9 0.005 90);
+  --input: oklch(0.92 0.005 90);
+  --ring: oklch(0.42 0.15 145);
+
+  --sidebar: oklch(0.975 0.004 95);
+  --sidebar-foreground: oklch(0.22 0.01 70);
+  --sidebar-primary: oklch(0.42 0.15 145);
+  --sidebar-primary-foreground: oklch(0.97 0.003 95);
+  --sidebar-accent: oklch(0.67 0.16 75);
+  --sidebar-accent-foreground: oklch(0.22 0.01 70);
+  --sidebar-border: oklch(0.9 0.005 90);
+  --sidebar-ring: oklch(0.42 0.15 145);
+
+  --chart-1: oklch(0.42 0.15 145);
+  --chart-2: oklch(0.67 0.16 75);
+  --chart-3: oklch(0.55 0.1 235);
+  --chart-4: oklch(0.5 0.12 155);
+  --chart-5: oklch(0.35 0.12 148);
 }
 
 .dark {
-  /* Dark mode disabled for this design - light theme only */
+  --primary: oklch(0.58 0.14 148);
+  --primary-foreground: oklch(0.12 0.005 95);
+
+  --accent: oklch(0.72 0.14 75);
+  --accent-foreground: oklch(0.12 0.005 95);
+
+  --secondary: oklch(0.6 0.1 235);
+  --secondary-foreground: oklch(0.12 0.005 95);
+
+  --background: oklch(0.12 0.005 95);
+  --foreground: oklch(0.92 0.005 95);
+
+  --card: oklch(0.16 0.005 95);
+  --card-foreground: oklch(0.92 0.005 95);
+  --popover: oklch(0.16 0.005 95);
+  --popover-foreground: oklch(0.92 0.005 95);
+
+  --muted: oklch(0.2 0.005 95);
+  --muted-foreground: oklch(0.65 0.005 95);
+
+  --border: oklch(0.25 0.005 95);
+  --input: oklch(0.22 0.005 95);
+  --ring: oklch(0.58 0.14 148);
+
+  --sidebar: oklch(0.14 0.005 95);
+  --sidebar-foreground: oklch(0.92 0.005 95);
+  --sidebar-primary: oklch(0.58 0.14 148);
+  --sidebar-primary-foreground: oklch(0.12 0.005 95);
+  --sidebar-accent: oklch(0.72 0.14 75);
+  --sidebar-accent-foreground: oklch(0.12 0.005 95);
+  --sidebar-border: oklch(0.25 0.005 95);
+  --sidebar-ring: oklch(0.58 0.14 148);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     direction: rtl;
-    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-family: 'Amiri', serif;
+    scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-family: 'Droid Arabic Kufi', sans-serif;
-    letter-spacing: 0.3px;
+    font-family: 'Amiri', serif;
   }
+
+  ::selection {
+    background-color: oklch(0.42 0.15 145 / 0.25);
+    color: inherit;
+  }
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -130,24 +158,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -158,116 +173,176 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
 }
 
-
 @layer components {
-  /* Islamic Modern Harmony - Custom Components */
-  
   .arafah-heading {
-    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-family: 'Amiri', serif;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    color: oklch(0.42 0.18 142);
+    color: var(--primary);
   }
-  
-  .arafah-subheading {
-    font-family: 'Droid Arabic Kufi', sans-serif;
-    font-weight: 500;
-    color: oklch(0.235 0.015 65);
-  }
-  
+
   .arafah-card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-100;
-    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  .arafah-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .arafah-card:hover::before {
+    opacity: 1;
+  }
+
   .arafah-card:hover {
-    @apply shadow-md border-accent/30;
-    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow:
+      0 4px 20px oklch(0 0 0 / 0.06),
+      0 1px 3px oklch(0 0 0 / 0.04);
   }
-  
+
   .arafah-counter-btn {
-    @apply bg-primary text-primary-foreground rounded-lg font-bold transition-all duration-150;
-    transform-origin: center;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    font-family: 'Amiri', serif;
+    transition: all 150ms ease;
   }
-  
-  .arafah-counter-btn:active {
-    transform: scale(0.97);
-  }
-  
+
   .arafah-counter-btn:hover {
-    @apply bg-primary/90;
+    background: color-mix(in oklch, var(--primary) 85%, black);
   }
-  
+
+  .arafah-counter-btn:active {
+    transform: scale(0.96);
+  }
+
   .arafah-divider {
-    @apply my-8 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.3;
+    margin-block: 3rem;
   }
-  
+
   .arafah-gold-accent {
-    color: oklch(0.65 0.18 70);
+    color: var(--accent);
   }
-  
-  .arafah-pulse {
-    animation: arafah-pulse 400ms ease-out;
-  }
-  
-  @keyframes arafah-pulse {
-    0% {
-      box-shadow: 0 0 0 0 oklch(0.65 0.18 70 / 0.7);
-    }
-    70% {
-      box-shadow: 0 0 0 10px oklch(0.65 0.18 70 / 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 oklch(0.65 0.18 70 / 0);
-    }
-  }
-  
+
   .arafah-fade-in {
-    animation: arafah-fade-in 400ms ease-out;
+    animation: arafah-fade-in 500ms ease-out;
   }
-  
+
   @keyframes arafah-fade-in {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(24px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
-  .arafah-stagger-1 {
-    animation: arafah-fade-in 400ms ease-out 80ms backwards;
+
+  .arafah-pulse {
+    animation: arafah-pulse 500ms ease-out;
   }
-  
-  .arafah-stagger-2 {
-    animation: arafah-fade-in 400ms ease-out 160ms backwards;
+
+  @keyframes arafah-pulse {
+    0% {
+      box-shadow: 0 0 0 0 oklch(0.67 0.16 75 / 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 12px oklch(0.67 0.16 75 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 oklch(0.67 0.16 75 / 0);
+    }
   }
-  
-  .arafah-stagger-3 {
-    animation: arafah-fade-in 400ms ease-out 240ms backwards;
+
+  .arafah-glow {
+    animation: arafah-glow 2s ease-in-out infinite alternate;
   }
-  
-  .arafah-stagger-4 {
-    animation: arafah-fade-in 400ms ease-out 320ms backwards;
+
+  @keyframes arafah-glow {
+    from {
+      text-shadow: 0 0 8px oklch(0.67 0.16 75 / 0.3);
+    }
+    to {
+      text-shadow: 0 0 20px oklch(0.67 0.16 75 / 0.6);
+    }
   }
-  
-  .arafah-stagger-5 {
-    animation: arafah-fade-in 400ms ease-out 400ms backwards;
+}
+
+@layer utilities {
+  .bg-geometric {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(circle at 20% 50%, oklch(0.42 0.15 145 / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, oklch(0.67 0.16 75 / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, oklch(0.55 0.1 235 / 0.02) 0%, transparent 50%);
+  }
+
+  .dark .bg-geometric {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(circle at 20% 50%, oklch(0.58 0.14 148 / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, oklch(0.72 0.14 75 / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, oklch(0.6 0.1 235 / 0.03) 0%, transparent 50%);
+  }
+
+  .pattern-geometric {
+    position: relative;
+  }
+
+  .pattern-geometric::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 40px,
+        oklch(0.42 0.15 145 / 0.015) 40px,
+        oklch(0.42 0.15 145 / 0.015) 41px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 40px,
+        oklch(0.42 0.15 145 / 0.015) 40px,
+        oklch(0.42 0.15 145 / 0.015) 41px
+      );
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
